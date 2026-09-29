@@ -1,0 +1,115 @@
+﻿@model HelpDesk.DAL.Models.Ticket
+
+@{
+    ViewData["Title"] = "Update Ticket Status";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+            <h3>🔄 Update Ticket Status</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="UpdateStatus" method="post">
+
+                <input type="hidden" asp-for="TicketId" />
+                <input type="hidden" asp-for="TicketNumber" />
+                <input type="hidden" asp-for="Title" />
+                <input type="hidden" asp-for="Description" />
+                <input type="hidden" asp-for="DepartmentId" />
+                <input type="hidden" asp-for="CategoryId" />
+                <input type="hidden" asp-for="PriorityId" />
+                <input type="hidden" asp-for="CreatedDate" />
+                <input type="hidden" asp-for="AssignedToId" />
+
+
+                <input asp-for="CreatedById" type="hidden" />
+                <input asp-for="CreatedDate" type="hidden" />
+                <input asp-for="TicketNumber" type="hidden" />
+
+                <div class="mb-3">
+                    <label class="form-label"><b>Ticket Number</b></label>
+                    <input class="form-control" value="@Model.TicketNumber" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label"><b>Title</b></label>
+                    <input class="form-control" value="@Model.Title" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label"><b>Description</b></label>
+                    <textarea class="form-control" rows="4" readonly>@Model.Description</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label"><b>Status</b></label>
+
+                    @if (Model.Status == "Closed")
+                    {
+                        <select asp-for="Status"
+                                class="form-select"
+                                disabled>
+
+                            <option>@Model.Status</option>
+
+                        </select>
+
+                        <input type="hidden"
+                               asp-for="Status" />
+                    }
+                    else
+                    {
+                        <select asp-for="Status" class="form-select">
+
+                            <option value="Open">Open</option>
+
+                            <option value="In Progress">In Progress</option>
+
+                            <option value="Resolved">Resolved</option>
+
+                            <option value="Closed">Closed</option>
+
+                        </select>
+                    }
+
+                </div>
+
+                @if (Model.Status == "Closed")
+                {
+                    <button class="btn btn-secondary"
+                            disabled>
+
+                        <i class="bi bi-lock-fill"></i>
+
+                        Ticket Closed
+
+                    </button>
+                }
+                else
+                {
+                    <button type="submit"
+                            class="btn btn-success">
+
+                        <i class="bi bi-check-circle"></i>
+
+                        Update Status
+
+                    </button>
+                }
+
+                <a asp-action="MyAssignedTickets" class="btn btn-secondary">
+                    Back
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

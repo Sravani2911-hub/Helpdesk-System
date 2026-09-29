@@ -1,0 +1,532 @@
+﻿@model HelpDesk.Presentation.ViewModels.TicketDetailsViewModel
+
+@using Microsoft.AspNetCore.Identity
+@using HelpDesk.DAL.Models
+@inject UserManager<ApplicationUser> UserManager
+
+
+@{
+    ViewData["Title"] = "Ticket Details";
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+        <i class="bi bi-lock-fill"></i>
+
+        @TempData["Error"]
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+        </button>
+
+    </div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+        @TempData["Success"]
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+        </button>
+
+    </div>
+}
+
+
+<div class="ticket-page">
+
+    <div class="container mt-4 ">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white py-4">
+
+                <div class="d-flex justify-content-between align-items-start">
+
+                    <div>
+
+                        <h3 class="mb-2 fw-bold">
+                            @Model.Ticket?.TicketNumber
+                        </h3>
+
+                        <h5 class="mb-3">
+                            @Model.Ticket?.Title
+                        </h5>
+
+                        <small class="opacity-75">
+                            Created on
+                            @Model.Ticket?.CreatedDate.ToString("dd-MMM-yyyy hh:mm tt")
+                        </small>
+
+                    </div>
+
+                    <div class="text-end">
+
+                        <span class="badge bg-warning text-dark fs-6 px-3 py-2 mb-2">
+                            @Model.Ticket?.Priority?.PriorityName
+                        </span>
+
+                        <br />
+
+                        @if (Model.Ticket?.Status == "Open")
+                        {
+                            <span class="badge bg-success fs-6 px-3 py-2">
+                                Open
+                            </span>
+                        }
+                        else if (Model.Ticket?.Status == "In Progress")
+                        {
+                            <span class="badge bg-warning text-dark fs-6 px-3 py-2">
+                                In Progress
+                            </span>
+                        }
+                        else if (Model.Ticket?.Status == "Resolved")
+                        {
+                            <span class="badge bg-primary fs-6 px-3 py-2">
+                                Resolved
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-dark fs-6 px-3 py-2">
+                                Closed
+                            </span>
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <!-- LEFT SIDE -->
+
+                    <div class="col-lg-8">
+
+                        <div class="card border-0 shadow-sm mb-4">
+
+                            <div class="card-header bg-secondary text-white">
+
+                                <h5 class="mb-0">
+
+                                    <i class="bi bi-file-earmark-text-fill"></i>
+
+                                    Issue Description
+
+                                </h5>
+
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="description-box">
+
+                                    @if (!string.IsNullOrWhiteSpace(Model.Ticket?.Description))
+                                    {
+                                        <p class="description-text">
+                                            @Model.Ticket.Description
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-muted mb-0">
+                                            No description provided.
+                                        </p>
+                                    }
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT SIDE -->
+
+                    <div class="col-lg-4">
+
+                        <div class="card shadow-sm ticket-info-card">
+
+                            <div class="card-header bg-primary text-white">
+
+                                <h5 class="mb-0">
+
+                                    <i class="bi bi-info-circle-fill"></i>
+
+                                    Ticket Information
+
+                                </h5>
+
+                            </div>
+
+                            <div class="card-body">
+
+                                <table class="table table-borderless mb-0">
+
+                                    <tr>
+                                        <td><i class="bi bi-upc-scan text-primary"></i> Ticket No</td>
+                                        <td class="fw-semibold">@Model.Ticket?.TicketNumber</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><i class="bi bi-building text-primary"></i> Department</td>
+                                        <td>@Model.Ticket?.Department?.DepartmentName</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><i class="bi bi-folder text-warning"></i> Category</td>
+                                        <td>@Model.Ticket?.Category?.CategoryName</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><i class="bi bi-flag-fill text-danger"></i> Priority</td>
+                                        <td>@Model.Ticket?.Priority?.PriorityName</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><i class="bi bi-check-circle-fill text-success"></i> Status</td>
+                                        <td>@Model.Ticket?.Status</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><i class="bi bi-person-fill text-info"></i> Created By</td>
+                                        <td>@Model.Ticket?.CreatedBy?.FullName</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><i class="bi bi-headset text-primary"></i> Assigned To</td>
+                                        <td>
+                                            @(Model.Ticket?.AssignedTo?.FullName ?? "Not Assigned")
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><i class="bi bi-calendar-event text-secondary"></i> Created</td>
+                                        <td>
+                                            @Model.Ticket?.CreatedDate.ToString("dd-MMM-yyyy")
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <i class="bi bi-paperclip text-dark"></i> Attachment
+                                        </td>
+
+                                        <td>
+
+                                            @if (!string.IsNullOrEmpty(Model.Ticket?.AttachmentPath))
+                                            {
+                                                var extension = System.IO.Path
+                                                    .GetExtension(Model.Ticket.AttachmentPath)
+                                                    .ToLower();
+
+                                                @if (extension == ".jpg" ||
+                                                     extension == ".jpeg" ||
+                                                     extension == ".png" ||
+                                                     extension == ".gif")
+                                                {
+                                                    <img src="@Model.Ticket.AttachmentPath"
+                                                         class="img-fluid rounded shadow mb-2"
+                                                         style="max-height:180px;" />
+
+                                                    <br />
+
+
+                                                    <div class="d-flex gap-2">
+
+                                                        <a href="@Model.Ticket.AttachmentPath"
+                                                           target="_blank"
+                                                           class="btn btn-sm btn-outline-primary">
+
+                                                            <i class="bi bi-eye"></i>
+
+                                                            View Full Image
+
+                                                        </a>
+
+                                                        <a href="@Model.Ticket.AttachmentPath"
+                                                           download
+                                                           class="btn btn-sm btn-success">
+
+                                                            <i class="bi bi-download"></i>
+
+                                                            Download
+
+                                                        </a>
+
+                                                    </div>
+
+                                                }
+                                                else
+                                                {
+                                                    <div class="d-flex gap-2">
+
+                                                        <a href="@Model.Ticket.AttachmentPath"
+                                                           target="_blank"
+                                                           class="btn btn-sm btn-outline-primary">
+
+                                                            <i class="bi bi-file-earmark"></i>
+
+                                                            Open Attachment
+
+                                                        </a>
+
+                                                        <a href="@Model.Ticket.AttachmentPath"
+                                                           download
+                                                           class="btn btn-sm btn-success">
+
+                                                            <i class="bi bi-download"></i>
+
+                                                            Download
+
+                                                        </a>
+
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="text-center text-muted py-3">
+
+                                                    <i class="bi bi-paperclip fs-2"></i>
+
+                                                    <p class="mb-0 mt-2">
+
+                                                        No attachment uploaded.
+
+                                                    </p>
+
+                                                </div>
+                                            }
+
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+    </div>
+
+    <br />
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+            <h4>💬 Comments</h4>
+        </div>
+
+            <div class="card-body">
+
+                @if (Model.Comments.Any())
+                {
+                    @foreach (var comment in Model.Comments)
+                    {
+                        var roles = comment.User != null
+                            ? await UserManager.GetRolesAsync(comment.User)
+                            : new List<string>();
+
+                        <div class="chat-card mb-4">
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                                <div>
+
+                                    <h6 class="mb-1 fw-bold">
+
+                                        <i class="bi bi-person-circle"></i>
+
+                                        @comment.User?.FullName
+
+                                        @if (roles.Contains("Admin"))
+                                        {
+                                            <span class="badge bg-danger ms-2">
+                                                Administrator
+                                            </span>
+                                        }
+                                        else if (roles.Contains("Support Engineer"))
+                                        {
+                                            <span class="badge bg-primary ms-2">
+                                                Support Engineer
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-success ms-2">
+                                                Employee
+                                            </span>
+                                        }
+
+                                    </h6>
+
+                                </div>
+
+                                <small class="text-muted">
+
+                                    @comment.CommentDate.ToString("dd-MMM-yyyy hh:mm tt")
+
+                                </small>
+
+                            </div>
+
+                            <div class="chat-message">
+
+                                @comment.CommentText
+
+                            </div>
+
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-light border">
+
+                        No comments available.
+
+                    </div>
+                }
+
+            </div> 
+
+        <div class="card shadow mt-4">
+
+            <div class="card-header bg-dark text-white">
+                <h4>🕒 Ticket History</h4>
+            </div>
+
+                <div class="card-body">
+
+                    @if (Model.History.Any())
+                    {
+                        foreach (var item in Model.History)
+                        {
+                            <div class="timeline-item">
+
+                                <div class="timeline-icon">
+
+                                    <i class="bi bi-check-circle-fill"></i>
+
+                                </div>
+
+                                <div class="timeline-content">
+
+                                    <h6 class="mb-1 fw-bold">
+
+                                        @item.Action
+
+                                    </h6>
+
+                                    <small class="text-muted">
+
+                                        <i class="bi bi-person-circle"></i>
+
+                                        @item.User?.FullName
+
+                                        &nbsp;&nbsp;
+
+                                        <i class="bi bi-clock"></i>
+
+                                        @item.ActionDate.ToString("dd-MMM-yyyy hh:mm tt")
+
+                                    </small>
+
+                                </div>
+
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-light border">
+
+                            No history available.
+
+                        </div>
+                    }
+
+                </div>
+
+        </div>
+
+            <div class="card shadow mt-4">
+
+                <div class="card-header bg-warning text-dark">
+
+                    <h4 class="mb-0">
+
+                        <i class="bi bi-chat-left-text-fill"></i>
+
+                        Reply to Ticket
+
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form asp-action="AddComment" method="post">
+
+                        <input type="hidden"
+                               name="ticketId"
+                               value="@Model.Ticket?.TicketId" />
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+
+                                Your Response
+
+                            </label>
+
+                            <textarea name="newComment"
+                                      class="form-control comment-box"
+                                      rows="5"
+                                      placeholder="Write your reply here..."></textarea>
+
+                        </div>
+
+                        <div class="text-end">
+
+                            <button type="submit"
+                                    class="btn btn-primary px-4">
+
+                                <i class="bi bi-send-fill"></i>
+
+                                Post Comment
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+    </div>
+
+</div>
+</div>

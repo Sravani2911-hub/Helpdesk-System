@@ -1,0 +1,199 @@
+﻿@model HelpDesk.DAL.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3>
+                <i class="bi bi-person-circle"></i>
+
+                My Profile
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <p class="text-muted mb-4">
+                View and manage your personal information.
+            </p>
+
+            <div class="row">
+
+                <!-- Left Side -->
+
+                <div class="col-md-5 text-center border-end">
+
+                    @if (!string.IsNullOrEmpty(Model.ProfileImage))
+                    {
+                        <img src="@Model.ProfileImage"
+                             class="rounded-circle img-thumbnail shadow"
+                             width="180"
+                             height="180"
+                             style="object-fit:cover;" />
+                    }
+                    else
+                    {
+                        <i class="bi bi-person-circle"
+                           style="font-size:170px;color:#6c757d;"></i>
+                    }
+
+                    <h3 class="mt-3 fw-bold">
+                        @Model.FullName
+                    </h3>
+
+                    @{
+                        var role = User.Claims
+                            .FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Role)?.Value;
+                    }
+
+                    <span class="badge bg-primary px-3 py-2">
+
+                        @role
+
+                    </span>
+
+                </div>
+
+                <!-- Right Side -->
+
+                <div class="col-md-7">
+
+                    <table class="table table-bordered align-middle">
+
+                        <tr>
+
+                            <th width="35%">
+                                <i class="bi bi-person"></i>
+                                Full Name
+                            </th>
+
+                            <td>@Model.FullName</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+                                <i class="bi bi-envelope"></i>
+                                Email
+                            </th>
+
+                            <td>@Model.Email</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+                                <i class="bi bi-telephone"></i>
+                                Phone Number
+                            </th>
+
+                            <td>
+
+                                @(string.IsNullOrWhiteSpace(Model.PhoneNumber)
+                                    ? "-"
+                                    : Model.PhoneNumber)
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+                                <i class="bi bi-building"></i>
+                                Department
+                            </th>
+
+                            <td>
+
+                                @(string.IsNullOrWhiteSpace(Model.Department)
+                                    ? "-"
+                                    : Model.Department)
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+                                <i class="bi bi-calendar-event"></i>
+                                Member Since
+                            </th>
+
+                            <td>
+
+                                @Model.MemberSince.ToString("dd-MMM-yyyy")
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+                                <i class="bi bi-clock-history"></i>
+                                Last Login
+                            </th>
+
+                            <td>
+
+                                @(Model.LastLogin.HasValue
+                                    ? Model.LastLogin.Value.ToString("dd-MMM-yyyy hh:mm tt")
+                                    : "Never")
+
+                            </td>
+
+                        </tr>
+
+
+                    </table>
+
+           
+
+                    <div class="mt-4 text-center">
+
+                        <a asp-action="Edit"
+                           class="btn btn-primary px-4 me-2">
+
+                            <i class="bi bi-pencil-square"></i>
+
+                            Edit Profile
+
+                        </a>
+
+                        <a asp-action="ChangePassword"
+                           class="btn btn-outline-dark px-4">
+
+                            <i class="bi bi-lock"></i>
+
+                            Change Password
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr />
+
+     
+
+        </div>
+
+       
+
+    </div>
+
+</div>

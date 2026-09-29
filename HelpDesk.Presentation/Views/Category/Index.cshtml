@@ -1,0 +1,104 @@
+﻿@model IEnumerable<HelpDesk.DAL.Models.Category>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div class="ticket-page">
+<h2>Categories</h2>
+
+<form asp-action="Index" method="get" class="mb-3">
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <input type="text"
+                   name="searchText"
+                   value="@ViewBag.SearchText"
+                   class="form-control"
+                   placeholder="Search Category" />
+        </div>
+
+        <div class="col-md-3">
+
+            <button type="submit" class="btn btn-primary">
+                Search
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Clear
+            </a>
+
+        </div>
+
+    </div>
+
+</form>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">
+        Create New Category
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+
+        <tr>
+            <th>Category Id</th>
+            <th>Category Name</th>
+            <th>Is Active</th>
+            <th>Actions</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.CategoryId</td>
+
+                    <td>@item.CategoryName</td>
+
+                    <td>@item.IsActive</td>
+
+                    <td>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@item.CategoryId"
+                           class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@item.CategoryId"
+                           class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+
+                <td colspan="4" class="text-center">
+                    No Categories Found
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+</div>

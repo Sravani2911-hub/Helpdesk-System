@@ -1,0 +1,44 @@
+﻿@model HelpDesk.DAL.Models.Category
+
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<h2>Edit Category</h2>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="CategoryId" /> <!--This hidden field sends the CategoryId back to the controller so it knows which record to update.-->
+
+    <div class="mb-3">
+        <label asp-for="CategoryName" class="form-label"></label>
+
+        <input asp-for="CategoryName" class="form-control" />
+
+        <span asp-validation-for="CategoryName" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+
+        <input asp-for="IsActive" class="form-check-input" />
+
+        <label asp-for="IsActive" class="form-check-label"></label>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Update
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Back
+    </a>
+
+</form>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,344 @@
+﻿/* ==========================
+   TICKET PAGE
+========================== */
+
+.ticket-page .card {
+    background: #fff;
+    color: #212529;
+}
+
+.ticket-page .card-body {
+    color: #212529;
+}
+
+.ticket-page label {
+    color: #212529 !important;
+    font-weight: 600;
+}
+
+.ticket-page .form-control,
+.ticket-page .form-select,
+.ticket-page textarea {
+    background: #fff;
+    color: #212529 !important;
+}
+
+.ticket-page table {
+    background: #fff;
+}
+
+    .ticket-page table thead th {
+        background: #1f2937;
+        color: #fff !important;
+    }
+
+    .ticket-page table tbody td {
+        color: #212529 !important;
+        background: #fff !important;
+    }
+
+    .ticket-page table tbody tr:hover td {
+        background: #f4f4f4 !important;
+    }
+/* ===============================
+   Ticket Information Card
+=================================*/
+
+.ticket-info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ececec;
+    padding-bottom: 10px;
+}
+
+.info-label {
+    font-size: 13px;
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    font-size: 16px;
+    color: #212529;
+    font-weight: 500;
+}
+/* =====================================
+   Description Panel
+===================================== */
+
+.description-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid #0d6efd;
+    border-radius: 12px;
+    padding: 20px;
+    min-height: 220px;
+}
+
+.description-text {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #212529;
+    margin-bottom: 0;
+    white-space: pre-wrap;
+}
+/* ==========================
+   Ticket Information Card
+========================== */
+
+.ticket-info-card {
+    position: sticky;
+    top: 95px;
+    border-radius: 14px;
+}
+
+    .ticket-info-card table td {
+        padding: 12px 6px;
+        vertical-align: middle;
+    }
+
+    .ticket-info-card i {
+        width: 20px;
+    }
+/*==========================================
+    COMMENTS
+==========================================*/
+
+.chat-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 18px;
+    background: #ffffff;
+    box-shadow: 0 3px 10px rgba(0,0,0,.05);
+}
+
+.chat-message {
+    background: #f8fafc;
+    border-left: 4px solid #0d6efd;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #212529;
+}
+/*=========================================
+        Ticket History Timeline
+=========================================*/
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.timeline-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #0d6efd;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 18px;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.timeline-content {
+    flex: 1;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 15px 18px;
+    border-left: 4px solid #0d6efd;
+}
+
+    .timeline-content h6 {
+        color: #212529;
+    }
+
+    .timeline-content small {
+        color: #6c757d;
+    }
+
+/*==========================================
+    ADD COMMENT
+==========================================*/
+
+.comment-box {
+    min-height: 140px;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    resize: vertical;
+    transition: .3s;
+}
+
+    .comment-box:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 .2rem rgba(13,110,253,.15);
+    }
+
+.card-header h4 {
+    font-weight: 600;
+}
+/*==========================================
+        FINAL POLISH
+==========================================*/
+
+/* Smooth animation */
+
+.card {
+    transition: all .3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0,0,0,.12);
+    }
+
+/* Ticket Header */
+
+.card-header h3 {
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+
+/* Section Titles */
+
+.card-header h4,
+.card-header h5 {
+    font-weight: 600;
+}
+
+/* Better spacing */
+
+.card {
+    border: none;
+    border-radius: 16px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* Better buttons */
+
+.btn {
+    border-radius: 10px;
+    transition: .25s;
+}
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+/* Better badges */
+
+.badge {
+    font-size: 12px;
+    padding: 8px 12px;
+}
+
+/* Tables */
+
+.table td {
+    vertical-align: middle;
+}
+
+/* Images */
+
+.img-thumbnail {
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+}
+
+/* Attachment Button */
+
+.btn-outline-primary {
+    border-radius: 8px;
+}
+
+/* Timeline */
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+/*=========================================
+        NOTIFICATIONS
+=========================================*/
+
+.notification-card {
+    border: none;
+    border-radius: 14px;
+    transition: .3s;
+}
+
+    .notification-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0,0,0,.10);
+    }
+
+.notification-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.notification-page h2 {
+    color: #212529;
+}
+
+.notification-page .card-body {
+    padding: 22px;
+}
+/*=============================
+    Notification Dropdown
+==============================*/
+
+.notification-dropdown {
+    width: 380px;
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+    .notification-dropdown .fw-semibold {
+        color: #212529 !important;
+    }
+
+    .notification-dropdown small {
+        color: #6c757d !important;
+    }
+
+    .notification-dropdown .dropdown-item {
+        color: #212529 !important;
+    }
+
+        .notification-dropdown .dropdown-item:hover {
+            background: #f8fafc;
+        }
+
+    .notification-dropdown .dropdown-header {
+        background: #f8fafc;
+        padding: 15px 20px;
+    }
+.notification-message {
+    color: #212529 !important;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    display: block;
+}

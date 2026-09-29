@@ -1,0 +1,104 @@
+﻿@model IEnumerable<HelpDesk.DAL.Models.Ticket>
+
+@{
+    ViewData["Title"] = "My Assigned Tickets";
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{ 
+    <div class="alert alert-danger">
+        <pre>@TempData["Error"]</pre>
+    </div>
+}
+
+@if (TempData["Debug"] != null)
+{
+    <div class="alert alert-warning">
+        @TempData["Debug"]
+    </div>
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3>📋 My Assigned Tickets</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Ticket No</th>
+                        <th>Title</th>
+                        <th>Department</th>
+                        <th>Category</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                <a asp-action="Details"
+                                   asp-route-id="@item.TicketId"
+                                   class="text-primary fw-semibold text-decoration-none">
+
+                                    @item.TicketNumber
+
+                                </a>
+                            </td>
+
+                            <td>@item.Title</td>
+
+                            <td>@item.Department?.DepartmentName</td>
+
+                            <td>@item.Category?.CategoryName</td>
+
+                            <td>@item.Priority?.PriorityName</td>
+
+                            <td>@item.Status</td>
+
+                            <td>
+                                
+
+                                <a asp-action="UpdateStatus"
+                                   asp-route-id="@item.TicketId"
+                                   class="btn btn-warning btn-sm">
+
+                                    Update Status
+
+                                </a>
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

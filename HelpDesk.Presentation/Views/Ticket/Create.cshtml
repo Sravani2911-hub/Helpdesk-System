@@ -1,0 +1,152 @@
+﻿@model HelpDesk.DAL.Models.Ticket
+
+@{
+    ViewData["Title"] = "Raise Support Ticket";
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-warning">
+        @TempData["Error"]
+    </div>
+}
+
+<<div class="ticket-page">
+
+<div class="container mt-4 ">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3>
+                🎫 Raise Support Ticket
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Department
+                        </label>
+
+                        <select asp-for="DepartmentId"
+                                asp-items="ViewBag.Departments"
+                                class="form-select">
+
+                            <option value="">-- Select Department --</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Category
+                        </label>
+
+                        <select asp-for="CategoryId"
+                                asp-items="ViewBag.Categories"
+                                class="form-select">
+
+                            <option value="">-- Select Category --</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Priority
+                        </label>
+
+                        <select asp-for="PriorityId"
+                                asp-items="ViewBag.Priorities"
+                                class="form-select">
+
+                            <option value="">-- Select Priority --</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <label asp-for="Title"></label>
+
+                        <input asp-for="Title"
+                               class="form-control"
+                               placeholder="Enter Issue Title" />
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label asp-for="Description"></label>
+
+                    <textarea asp-for="Description"
+                              class="form-control"
+                              rows="6"
+                              placeholder="Describe your issue clearly..."></textarea>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label asp-for="AttachmentFile" class="form-label">
+                        Attachment
+                    </label>
+
+                    <input asp-for="AttachmentFile"
+                           type="file"
+                           class="form-control" />
+
+                    <span asp-validation-for="AttachmentFile"
+                          class="text-danger"></span>
+
+                </div>
+
+
+                <div class="text-end">
+
+                    <button class="btn btn-success">
+
+                        Submit Ticket
+
+                    </button>
+
+                    <a asp-action="Index"
+                       class="btn btn-secondary">
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+                          </div>

@@ -1,0 +1,120 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width:768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    margin-bottom: 60px;
+    background: #4b5d73;
+    color: white;
+    font-family: "Segoe UI",sans-serif;
+}
+
+.navbar {
+    padding: 12px 20px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+}
+
+.nav-link {
+    margin-right: 12px;
+    font-weight: 500;
+}
+
+    .nav-link:hover {
+        color: #38bdf8 !important;
+    }
+
+.dropdown-menu {
+    border-radius: 12px;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 .1rem white,0 0 0 .25rem #258cfb;
+}
+
+footer {
+    color: #d6e4f0;
+}
+
+/* ==============================
+   Access Denied Page
+   ============================== */
+
+.access-denied-page {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.access-denied-card {
+    width: 100%;
+    max-width: 600px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.access-denied-icon {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #fff3cd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .access-denied-icon i {
+        font-size: 45px;
+        color: #dc3545;
+    }
+
+.access-denied-card h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 10px;
+}
+
+.access-denied-card h4 {
+    color: #495057;
+    margin-bottom: 12px;
+}
+
+.access-denied-card p {
+    color: #6c757d;
+    margin-bottom: 25px;
+}
+
+.access-denied-card .alert {
+    text-align: left;
+    border-radius: 10px;
+}
+
+.access-denied-card .btn {
+    border-radius: 8px;
+    padding: 10px 20px;
+}

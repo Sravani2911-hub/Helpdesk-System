@@ -1,0 +1,635 @@
+﻿<!-- This tells Razor View which model this page is using. -->
+@model HelpDesk.Presentation.Models.DashboardViewModel
+
+<!--Execute C# code inside Razor view.-->
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="dashboard-page">
+    <!--container-fluid:Full width responsive container-->
+<div class="container-fluid px-4">
+
+    <div class="d-flex justify-content-between align-items-start mb-5">
+
+            <!--Dependency Injection:You are injecting Identity UserManager.-->
+            @inject Microsoft.AspNetCore.Identity.UserManager<HelpDesk.DAL.Models.ApplicationUser> UserManager
+
+            <!--Gets currently logged-in user-->
+            @{
+                var currentUser = await UserManager.GetUserAsync(User);
+            }
+
+            <div class="mb-4">
+
+                <h1 class="dashboard-title">
+                    <i class="bi bi-speedometer2"></i> HelpDesk Dashboard
+                </h1>
+
+                <h2 class="welcome-text">
+                    Welcome back,
+                    <span class="welcome-name">
+                        <!--If currentUser exists, get FullName otherwise show email(username)-->
+                        @(currentUser?.FullName ?? User.Identity?.Name)
+                    </span>
+                    👋
+                </h2>
+
+                <p class="welcome-subtitle">
+                    Here's your HelpDesk dashboard for today.
+                </p>
+
+            </div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stat-card gradient-blue h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+
+                    <div>
+                        <h6 class="text-uppercase mb-2">Total Tickets</h6>
+                        <h2 class="card-number">@Model.TotalTickets</h2>
+                        <small>Total tickets in the system</small>
+                    </div>
+
+                    <div class="card-icon">
+                        <i class="bi bi-ticket-detailed-fill"></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stat-card gradient-orange h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+
+                    <div>
+                        <h6 class="text-uppercase mb-2">Open</h6>
+                        <h2 class="card-number">@Model.OpenTickets</h2>
+                        <small>Waiting for action</small>
+                    </div>
+
+                    <div class="card-icon">
+                        <i class="bi bi-folder2-open"></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+   
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stat-card gradient-purple h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+
+                    <div>
+                        <h6 class="text-uppercase mb-2">In Progress</h6>
+                        <h2 class="card-number">@Model.InProgressTickets</h2>
+                        <small>Being worked on</small>
+                    </div>
+
+                    <div class="card-icon">
+                        <i class="bi bi-gear-fill"></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stat-card gradient-green h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+
+                    <div>
+                        <h6 class="text-uppercase mb-2">Resolved</h6>
+                        <h2 class="card-number">@Model.ResolvedTickets</h2>
+                        <small>Successfully completed</small>
+                    </div>
+
+                    <div class="card-icon">
+                        <i class="bi bi-check-circle-fill"></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card gradient-dark h-100">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+
+                        <div>
+                            <h6 class="text-uppercase mb-2">Closed</h6>
+                            <h2 class="card-number">@Model.ClosedTickets</h2>
+                            <small>Closed successfully</small>
+                        </div>
+
+                        <div class="card-icon">
+                            <i class="bi bi-lock-fill"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card gradient-pink h-100">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+
+                        <div>
+                            <h6 class="text-uppercase mb-2">Employees</h6>
+                            <h2 class="card-number">@Model.TotalEmployees</h2>
+                            <small>Registered employees</small>
+                        </div>
+
+                        <div class="card-icon">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card gradient-blue h-100">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+
+                        <div>
+                            <h6 class="text-uppercase mb-2">Engineers</h6>
+                            <h2 class="card-number">@Model.TotalSupportEngineers</h2>
+                            <small>Support Engineers</small>
+                        </div>
+
+                        <div class="card-icon">
+                            <i class="bi bi-headset"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card gradient-purple h-100">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+
+                        <div>
+                            <h6 class="text-uppercase mb-2">Admins</h6>
+                            <h2 class="card-number">@Model.TotalAdmins</h2>
+                            <small>System Administrators</small>
+                        </div>
+
+                        <div class="card-icon">
+                            <i class="bi bi-person-workspace"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+           
+
+
+
+    <div class="row mt-4">
+
+        <!-- Recent Tickets -->
+
+                <div class="col-lg-12">
+
+                    <div class="dashboard-box">
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                            <h4 class="mb-0">
+                                <i class="bi bi-clock-history text-primary"></i>
+                                Recent Tickets
+                            </h4>
+
+                            <a asp-controller="Ticket"
+                               asp-action="Index"
+                               class="btn btn-primary btn-sm rounded-pill px-3">
+                                View All
+                            </a>
+
+                        </div>
+
+                        <div class="table-responsive">
+
+                            <table class="table table-hover align-middle mb-0">
+
+                                <thead class="table-dark">
+
+                                    <tr>
+                                        <th>Ticket No</th>
+                                        <th>Title</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var ticket in Model.RecentTickets)
+                                    {
+                                        <tr>
+
+                                            <td>
+                                                <strong>@ticket.TicketNumber</strong>
+                                            </td>
+
+                                            <td>@ticket.Title</td>
+
+                                            <td class="text-center">
+
+                                                @if (ticket.Status == "Open")
+                                                {
+                                                    <span class="badge bg-warning text-dark px-3 py-2">Open</span>
+                                                }
+                                                else if (ticket.Status == "In Progress")
+                                                {
+                                                    <span class="badge bg-info px-3 py-2">In Progress</span>
+                                                }
+                                                else if (ticket.Status == "Resolved")
+                                                {
+                                                    <span class="badge bg-success px-3 py-2">Resolved</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary px-3 py-2">Closed</span>
+                                                }
+
+                                            </td>
+
+                                            <td class="text-center">
+
+                                                <a asp-controller="Ticket"
+                                                   asp-action="Details"
+                                                   asp-route-id="@ticket.TicketId"
+                                                   class="btn btn-outline-primary btn-sm rounded-circle">
+
+                                                    <i class="bi bi-eye"></i>
+
+                                                </a>
+
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+        </div>
+      
+    </div>
+
+        <div class="row mb-4">
+
+            <div class="col-12">
+
+                <div class="dashboard-box">
+
+                    <h4 class="mb-4">
+                        <i class="bi bi-lightning-charge-fill text-warning"></i>
+                        Quick Actions
+                    </h4>
+
+                    <div class="row g-3">
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="col-lg-3 col-md-6">
+                                <a asp-controller="Ticket"
+                                   asp-action="Index"
+                                   class="btn btn-primary w-100 py-3 quick-action-btn">
+
+                                    <i class="bi bi-ticket-detailed-fill"></i><br />
+                                    Manage Tickets
+
+                                </a>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6">
+                                <a asp-controller="Department"
+                                   asp-action="Index"
+                                   class="btn btn-success w-100 py-3">
+
+                                    <i class="bi bi-building-fill"></i><br />
+                                    Departments
+
+                                </a>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6">
+                                <a asp-controller="Category"
+                                   asp-action="Index"
+                                   class="btn btn-warning w-100 py-3 text-dark">
+
+                                    <i class="bi bi-folder-fill"></i><br />
+                                    Categories
+
+                                </a>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6">
+                                <a asp-controller="Priority"
+                                   asp-action="Index"
+                                   class="btn btn-danger w-100 py-3">
+
+                                    <i class="bi bi-flag-fill"></i><br />
+                                    Priorities
+
+                                </a>
+                            </div>
+                        }
+
+                        else if (User.IsInRole("Support Engineer"))
+                        {
+                            <div class="col-lg-4">
+                                <a asp-controller="Ticket"
+                                   asp-action="MyAssignedTickets"
+                                   class="btn btn-primary w-100 py-3">
+
+                                    <i class="bi bi-list-check"></i><br />
+                                    My Tickets
+
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <a asp-controller="Notification"
+                                   asp-action="Index"
+                                   class="btn btn-success w-100 py-3">
+
+                                    <i class="bi bi-bell-fill"></i><br />
+                                    Notifications
+
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <a asp-controller="Dashboard"
+                                   asp-action="Index"
+                                   class="btn btn-info w-100 py-3 text-white">
+
+                                    <i class="bi bi-speedometer2"></i><br />
+                                    Dashboard
+
+                                </a>
+                            </div>
+                        }
+
+                        else if (User.IsInRole("Employee"))
+                        {
+                            <div class="col-lg-4">
+                                <a asp-controller="Ticket"
+                                   asp-action="Create"
+                                   class="btn btn-primary w-100 py-3">
+
+                                    <i class="bi bi-plus-circle-fill"></i><br />
+                                    Raise Ticket
+
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <a asp-controller="Ticket"
+                                   asp-action="MyTickets"
+                                   class="btn btn-success w-100 py-3">
+
+                                    <i class="bi bi-ticket-fill"></i><br />
+                                    My Tickets
+
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <a asp-controller="Notification"
+                                   asp-action="Index"
+                                   class="btn btn-warning w-100 py-3 text-dark">
+
+                                    <i class="bi bi-bell-fill"></i><br />
+                                    Notifications
+
+                                </a>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Dashboard Activity -->
+
+        <div class="row mb-4">
+
+            <div class="col-lg-12">
+
+                <div class="dashboard-box">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <h4>
+                            <i class="bi bi-activity text-success"></i>
+                            Dashboard Activity
+                        </h4>
+
+                        <span class="badge bg-success">
+                            Live
+                        </span>
+
+                    </div>
+
+                    <div class="row text-center">
+
+                        <div class="col-md-3">
+
+                            <h3 class="text-primary">
+                                @Model.OpenTickets
+                            </h3>
+
+                            <p class="mb-0">
+                                Open Tickets
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <h3 class="text-warning">
+                                @Model.InProgressTickets
+                            </h3>
+
+                            <p class="mb-0">
+                                In Progress
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <h3 class="text-success">
+                                @Model.ResolvedTickets
+                            </h3>
+
+                            <p class="mb-0">
+                                Resolved
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <h3 class="text-danger">
+                                @Model.ClosedTickets
+                            </h3>
+
+                            <p class="mb-0">
+                                Closed
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    <div class="row mt-4">
+
+        <!-- Ticket Status Chart -->
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="dashboard-box chart-card">
+
+                <h4 class="mb-4">
+
+                    <i class="bi bi-bar-chart-fill text-primary"></i>
+
+                        <i class="bi bi-graph-up-arrow text-primary"></i>
+                        Ticket Status Overview
+
+                </h4>
+
+                <div class="chart-container">
+
+                    <canvas id="ticketChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Ticket Distribution -->
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="dashboard-box chart-card">
+
+                <h4 class="mb-4">
+
+                    <i class="bi bi-pie-chart-fill text-danger"></i>
+
+                        <i class="bi bi-pie-chart-fill text-danger"></i>
+                        Ticket Priority Distribution
+
+                </h4>
+
+                <div class="chart-container">
+
+                    <canvas id="pieChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+    </div>
+
+@section Scripts{
+
+    <script>
+
+        const ticketChart = new Chart(document.getElementById('ticketChart'), {
+
+            type: 'bar',
+
+            data: {
+
+                labels: ['Open', 'In Progress', 'Resolved', 'Closed'],
+
+                datasets: [{
+
+                    label: 'Tickets',
+
+                    data: [
+        @Model.OpenTickets,
+        @Model.InProgressTickets,
+        @Model.ResolvedTickets,
+                        @Model.ClosedTickets
+                    ],
+
+                    backgroundColor: [
+                        '#ffc107',
+                        '#0d6efd',
+                        '#198754',
+                        '#6c757d'
+                    ]
+
+                }]
+
+            },
+
+            options: {
+
+                responsive: true,
+                maintainAspectRatio: false,
+
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+
+            }
+
+        });
+        const pieChart = new Chart(document.getElementById('pieChart'), {
+
+            type: 'pie',
+
+            data: {
+                labels: ['Open', 'In Progress', 'Resolved', 'Closed'],
+             datasets: [{
+                   data: [@Model.OpenTickets,@Model.InProgressTickets,@Model.ResolvedTickets,@Model.ClosedTickets],
+                   backgroundColor: ['#ffc107','#0d6efd','#198754','#6c757d']
+                }]
+            }
+        });
+    </script>
+}

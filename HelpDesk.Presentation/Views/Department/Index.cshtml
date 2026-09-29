@@ -1,0 +1,95 @@
+﻿@model IEnumerable<HelpDesk.DAL.Models.Department>  // This tells Razor that the page receives a list of departments from the controller. 
+
+@{
+    ViewData["Title"] = "Departments";
+}
+<div class="ticket-page">
+    <h2>Departments</h2>
+<form asp-action="Index" method="get" class="mb-3">
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <input type="text"
+                   name="searchText"
+                   value="@ViewBag.SearchText"
+                   class="form-control"
+                   placeholder="Search Department" />
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button type="submit" class="btn btn-primary">
+                Search
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary"> 
+                Clear
+            </a>
+
+        </div>
+
+    </div>
+
+</form>
+
+
+<h2>Departments</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Department</a>
+</p>
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Department Id</th>
+            <th>Department Name</th>
+            <th>Is Active</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)  //This loops through every department and displays it in the HTML table.
+            {
+                <tr>
+                    <td>@item.DepartmentId</td>
+                    <td>@item.DepartmentName</td>
+                    <td>@item.IsActive</td>
+
+                    <td>
+                        <a asp-action="Edit"
+                           asp-route-id="@item.DepartmentId"
+                           class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@item.DepartmentId"
+                           class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">
+                    No Departments Found
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+</div>

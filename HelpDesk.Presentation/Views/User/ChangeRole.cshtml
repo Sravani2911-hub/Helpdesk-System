@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Change User Role";
+}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-primary text-white">
+
+                    <h3 class="mb-0">
+                        <i class="bi bi-person-gear"></i>
+                        Change User Role
+                    </h3>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form asp-action="ChangeRole" method="post">
+
+                        <input type="hidden"
+                               name="id"
+                               value="@ViewBag.UserId" />
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+
+                                User Name
+
+                            </label>
+
+                            <input class="form-control"
+                                   value="@ViewBag.UserName"
+                                   readonly />
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+
+                                Select Role
+
+                            </label>
+
+                            <select class="form-select" name="role">
+
+                                @foreach (var role in (List<string>)ViewBag.Roles)
+                                {
+                                    @if (role == ViewBag.CurrentRole)
+                                    {
+                                        <option value="@role" selected>
+                                            @role
+                                        </option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@role">
+                                            @role
+                                        </option>
+                                    }
+                                }
+
+                            </select>
+
+                        </div>
+
+                        <button class="btn btn-success">
+
+                            <i class="bi bi-check-circle"></i>
+
+                            Update Role
+
+                        </button>
+
+                        <a asp-action="Index"
+                           class="btn btn-secondary">
+
+                            Cancel
+
+                        </a>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
