@@ -27,43 +27,17 @@ A help desk management application built with ASP.NET Core MVC, Entity Framework
 - Notifications and email alerts for ticket activity
 - Excel export for filtered ticket reports and analytics dashboards
 
-## Screenshots
+## Features Overview
 
-### Login and Registration
+This project includes:
 
-![Login Screen](HelpDesk.Presentation/wwwroot/uploads/8670c17d-31eb-4417-811a-8b43cef69078.png)
-
-![Registration Screen](HelpDesk.Presentation/wwwroot/uploads/4afe961a-1a3f-4fc7-a127-03b1ee830d86.png)
-
-### Admin Dashboard
-
-![Admin Dashboard](HelpDesk.Presentation/wwwroot/uploads/38bda361-3867-4e6e-b952-a7f53a276b31.jpg)
-
-### Support Tickets
-
-![Support Tickets](HelpDesk.Presentation/wwwroot/uploads/f93daa55-75fd-4252-ac9a-6da97157edfe.jpg)
-
-### Department Management
-
-![Departments](HelpDesk.Presentation/wwwroot/uploads/463900cf-4194-4f9d-a699-febfd65b5d59.jpg)
-
-### Category Management
-
-![Categories](HelpDesk.Presentation/wwwroot/uploads/8f270d1d-028a-4c49-a06f-faa1764a7032.jpg)
-
-### Reports and Analytics
-
-![Reports Dashboard](HelpDesk.Presentation/wwwroot/uploads/a97df884-f827-438a-baa1-182827c8ba06.jpg)
-
-### Raise Ticket Flow
-
-![Raise Ticket](HelpDesk.Presentation/wwwroot/uploads/b6bfd9f2-4ca8-49ff-9d2f-e2c3a89ed094.jpg)
-
-### My Assigned Tickets and Ticket Detail
-
-![My Assigned Tickets](HelpDesk.Presentation/wwwroot/uploads/c75cec52-3653-4fc8-bf2b-45ef383ec9a8.jpeg)
-
-![Ticket Detail View](HelpDesk.Presentation/wwwroot/uploads/e83ef206-447e-476b-818d-18adf3ee8c4e.jpeg)
+- login and registration flow
+- role-based dashboard access for admin, employee, and support engineer users
+- ticket creation, assignment, and status tracking
+- department and category management
+- ticket history and comments
+- reporting and analytics
+- Excel export for ticket management
 
 ## Prerequisites
 
