@@ -17,23 +17,45 @@ A help desk management application built with ASP.NET Core MVC, Entity Framework
 - HelpDesk.BAL - Business logic and service layer
 - HelpDesk.DAL - Data access layer, repositories, and DbContext
 
+## Features
+
+- Role-based access for Admin, Employee, and Support Engineer users
+- Ticket creation, assignment, updates, and lifecycle tracking
+- Department and category management for organization-wide support workflows
+- Priority-based ticket classification and reporting
+- Comment threads and ticket history for traceability
+- Notifications and email alerts for ticket activity
+- Excel export for filtered ticket reports and analytics dashboards
+
 ## Screenshots
 
-### Dashboard
+### Login and Registration
 
-![Dashboard](HelpDesk.Presentation/wwwroot/uploads/8670c17d-31eb-4417-811a-8b43cef69078.png)
+![Login Screen](HelpDesk.Presentation/wwwroot/uploads/8670c17d-31eb-4417-811a-8b43cef69078.png)
 
-### Ticket Management
+### Admin Dashboard
 
-![Ticket Management](HelpDesk.Presentation/wwwroot/uploads/4afe961a-1a3f-4fc7-a127-03b1ee830d86.png)
+![Admin Dashboard](HelpDesk.Presentation/wwwroot/uploads/4afe961a-1a3f-4fc7-a127-03b1ee830d86.png)
 
-### Reports
+### Support Tickets
+
+![Support Tickets](HelpDesk.Presentation/wwwroot/uploads/38bda361-3867-4e6e-b952-a7f53a276b31.jpg)
+
+### Department and Category Management
+
+![Departments](HelpDesk.Presentation/wwwroot/uploads/f93daa55-75fd-4252-ac9a-6da97157edfe.jpg)
+
+![Categories](HelpDesk.Presentation/wwwroot/uploads/463900cf-4194-4f9d-a699-febfd65b5d59.jpg)
+
+### Reports and Analytics
 
 ![Reports](HelpDesk.Presentation/wwwroot/uploads/8f270d1d-028a-4c49-a06f-faa1764a7032.jpg)
 
-### Support Flow
+### Ticket Details and Support Flow
 
-![Support Flow](HelpDesk.Presentation/wwwroot/uploads/a97df884-f827-438a-baa1-182827c8ba06.jpg)
+![Ticket Details](HelpDesk.Presentation/wwwroot/uploads/a97df884-f827-438a-baa1-182827c8ba06.jpg)
+
+![Support Flow](HelpDesk.Presentation/wwwroot/uploads/b6bfd9f2-4ca8-49ff-9d2f-e2c3a89ed094.jpg)
 
 ## Prerequisites
 
